@@ -207,7 +207,7 @@ const Home: React.FC = () => {
             <div className="relative py-12 border-t border-white/10 bg-gradient-to-r from-white/5 via-primary-500/10 to-white/5 overflow-hidden">
                <div className="flex animate-marquee hover-pause whitespace-nowrap">
                   {[...recruiters, ...recruiters].map((r, i) => (
-                     <span key={i} className="text-4xl font-black text-white/20 uppercase hover:text-primary-500 transition-colors cursor-default mx-10">
+                     <span key={`${r}-${i}`} className="text-4xl font-black text-white/20 uppercase hover:text-primary-500 transition-colors cursor-default mx-10">
                         {r}
                      </span>
                   ))}
