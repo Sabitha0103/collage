@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700;900&display=swap"
     rel="stylesheet">
   <script>
     tailwind.config = {
@@ -49,13 +49,15 @@
             }
           },
           fontFamily: {
-            sans: ['Open Sans', 'sans-serif'],
-            heading: ['Montserrat', 'sans-serif'],
+            sans: ['Lato', 'sans-serif'],
+            heading: ['Playfair Display', 'serif'],
           },
           animation: {
             'scroll-left': 'scroll-left 40s linear infinite',
             'scroll-up': 'scroll-up 20s linear infinite',
             'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+            'float': 'float 3s ease-in-out infinite',
+            'marquee': 'marquee 30s linear infinite',
           },
           keyframes: {
             'scroll-left': {
@@ -69,6 +71,14 @@
             fadeInUp: {
               '0%': { opacity: '0', transform: 'translateY(20px)' },
               '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-10px)' },
+            },
+            marquee: {
+              '0%': { transform: 'translateX(0%)' },
+              '100%': { transform: 'translateX(-50%)' },
             }
           }
         }
