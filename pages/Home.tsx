@@ -45,19 +45,22 @@ const Home: React.FC = () => {
 
          {/* 1. HERO SECTION */}
          <section className="relative h-screen w-full flex flex-col justify-center overflow-hidden border-b border-gray-100">
+            {/* Orange gradient background overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 via-orange-400/10 to-primary-600/5 pointer-events-none"></div>
+            
             <HeroScene />
 
             <div className="container mx-auto px-8 md:px-20 relative z-10 pointer-events-none">
                <motion.div style={{ y: heroTextY, opacity: heroOpacity }} className="text-left mix-blend-multiply">
-                  <h1 className="text-[20vw] md:text-[25vw] font-black tracking-tighter leading-none text-primary-500 select-none -ml-4 md:-ml-12">
+                  <h1 className="text-[20vw] md:text-[25vw] font-black tracking-tighter leading-none text-primary-500 select-none -ml-4 md:-ml-12 animate-float">
                      SRIT
                   </h1>
                   <div className="md:pl-4">
-                     <div className="text-2xl md:text-5xl font-black tracking-tighter text-secondary-900 uppercase mt-[-2vw]">
+                     <div className="text-2xl md:text-5xl font-black tracking-tighter text-secondary-900 uppercase mt-[-2vw] font-heading">
                         Srinivasa Ramanujan
                      </div>
                      <div className="text-sm md:text-xl font-bold tracking-[0.3em] text-secondary-500 uppercase mt-4 flex items-center gap-4">
-                        Institute of Technology <span className="h-px flex-1 bg-secondary-900/20"></span>
+                        Institute of Technology <span className="h-px flex-1 bg-gradient-to-r from-primary-500 to-transparent"></span>
                      </div>
                   </div>
                </motion.div>
@@ -81,12 +84,17 @@ const Home: React.FC = () => {
          </div>
 
          {/* 3. VISION & ABOUT */}
-         <section className="py-24 bg-gray-50">
+         <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-primary-50/30">
             <div className="container mx-auto px-4 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-16">
-               <div>
+               <motion.div
+                  initial={{ opacity: 0, x: -50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true }}
+               >
                   <span className="text-primary-500 font-bold uppercase tracking-widest text-xs mb-4 block">About SRIT</span>
-                  <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight mb-8">
-                     Engineering <br />the <span className="text-primary-500">Future.</span>
+                  <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight mb-8 font-heading">
+                     Engineering <br />the <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 via-primary-500 to-orange-400">Future.</span>
                   </h2>
                   <p className="text-lg leading-relaxed text-secondary-600 font-medium mb-8">
                      Established in 2008, SRIT is an autonomous institution dedicated to fostering innovation.
@@ -95,82 +103,111 @@ const Home: React.FC = () => {
                   <Link to="/about" className="text-secondary-900 font-bold uppercase tracking-widest text-sm border-b-2 border-primary-500 pb-1 hover:text-primary-500 transition-colors">
                      Read our Vision & Mission
                   </Link>
-               </div>
+               </motion.div>
                <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-white p-8 border-l-4 border-primary-500 shadow-sm">
-                     <Award className="text-primary-500 mb-4" size={32} />
-                     <h3 className="text-xl font-black mb-2">NAAC 'A+'</h3>
-                     <p className="text-xs text-secondary-500 font-bold uppercase">Accredited</p>
-                  </div>
-                  <div className="bg-white p-8 border-l-4 border-primary-500 shadow-sm">
-                     <Globe className="text-primary-500 mb-4" size={32} />
-                     <h3 className="text-xl font-black mb-2">Autonomous</h3>
-                     <p className="text-xs text-secondary-500 font-bold uppercase">UGC Status</p>
-                  </div>
-                  <div className="bg-white p-8 border-l-4 border-primary-500 shadow-sm">
-                     <Users className="text-primary-500 mb-4" size={32} />
-                     <h3 className="text-xl font-black mb-2">3000+</h3>
-                     <p className="text-xs text-secondary-500 font-bold uppercase">Students</p>
-                  </div>
-                  <div className="bg-white p-8 border-l-4 border-primary-500 shadow-sm">
-                     <BookOpen className="text-primary-500 mb-4" size={32} />
-                     <h3 className="text-xl font-black mb-2">NBA</h3>
-                     <p className="text-xs text-secondary-500 font-bold uppercase">Accredited Depts</p>
-                  </div>
+                  {[
+                     { icon: Award, title: "NAAC 'A+'", subtitle: "Accredited", delay: 0 },
+                     { icon: Globe, title: "Autonomous", subtitle: "UGC Status", delay: 0.1 },
+                     { icon: Users, title: "3000+", subtitle: "Students", delay: 0.2 },
+                     { icon: BookOpen, title: "NBA", subtitle: "Accredited Depts", delay: 0.3 }
+                  ].map((item, index) => (
+                     <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: item.delay }}
+                        viewport={{ once: true }}
+                        whileHover={{ scale: 1.05, boxShadow: "0 20px 25px -5px rgba(249, 115, 22, 0.2)" }}
+                        className="bg-white p-8 border-l-4 border-primary-500 shadow-lg hover:shadow-xl transition-all duration-300 rounded-r-lg"
+                     >
+                        <item.icon className="text-primary-500 mb-4" size={32} />
+                        <h3 className="text-xl font-black mb-2">{item.title}</h3>
+                        <p className="text-xs text-secondary-500 font-bold uppercase">{item.subtitle}</p>
+                     </motion.div>
+                  ))}
                </div>
             </div>
          </section>
 
          {/* 4. ACADEMICS & DEPARTMENTS PREVIEW */}
          <section className="py-32 bg-white">
-            <div className="container mx-auto px-4 md:px-12 text-center mb-20">
+            <motion.div 
+               className="container mx-auto px-4 md:px-12 text-center mb-20"
+               initial={{ opacity: 0, y: 30 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               transition={{ duration: 0.6 }}
+               viewport={{ once: true }}
+            >
                <span className="text-primary-500 font-bold uppercase tracking-widest text-xs mb-2 block">Academic Programs</span>
-               <h2 className="text-5xl font-black text-secondary-900 uppercase tracking-tighter">
+               <h2 className="text-5xl font-black text-secondary-900 uppercase tracking-tighter font-heading">
                   Schools of Study
                </h2>
-            </div>
+            </motion.div>
             <div className="border-y border-gray-100 divide-y md:divide-y-0 md:divide-x divide-gray-100 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
                {['Computer Science', 'Electronics & Comm.', 'Electrical Engg.', 'Mechanical', 'Civil Engg.', 'Humanities'].map((dept, i) => (
-                  <div key={i} className="p-10 group hover:bg-secondary-900 hover:text-white transition-colors duration-300 flex flex-col items-center text-center">
-                     <div className="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-primary-500 text-primary-500 group-hover:text-white transition-colors">
+                  <motion.div 
+                     key={i} 
+                     className="p-10 group hover:bg-gradient-to-br hover:from-secondary-900 hover:to-secondary-800 hover:text-white transition-all duration-300 flex flex-col items-center text-center"
+                     initial={{ opacity: 0, y: 20 }}
+                     whileInView={{ opacity: 1, y: 0 }}
+                     transition={{ duration: 0.5, delay: i * 0.1 }}
+                     viewport={{ once: true }}
+                     whileHover={{ scale: 1.05 }}
+                  >
+                     <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-orange-400 rounded-full flex items-center justify-center mb-6 text-white shadow-lg group-hover:shadow-xl group-hover:shadow-primary-500/50 transition-all">
                         <ArrowRight size={20} />
                      </div>
                      <h3 className="font-bold text-lg uppercase mb-2">{dept}</h3>
-                     <Link to="/departments" className="text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity text-primary-500">
+                     <Link to="/departments" className="text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity text-primary-400">
                         View Program
                      </Link>
-                  </div>
+                  </motion.div>
                ))}
             </div>
             <div className="text-center mt-12">
-               <Link to="/departments" className="inline-block bg-primary-500 text-white px-8 py-3 rounded font-bold uppercase text-sm tracking-widest hover:bg-primary-600 transition-colors">
+               <Link to="/departments" className="inline-block bg-gradient-to-r from-primary-600 via-primary-500 to-orange-400 text-white px-8 py-3 rounded font-bold uppercase text-sm tracking-widest hover:shadow-lg hover:shadow-primary-500/50 transition-all duration-300 hover:scale-105">
                   View All Departments
                </Link>
             </div>
          </section>
 
          {/* 5. PLACEMENTS & RECRUITERS */}
-         <section className="py-24 bg-secondary-900 text-white overflow-hidden">
+         <section className="py-24 bg-gradient-to-br from-secondary-900 via-secondary-800 to-secondary-900 text-white overflow-hidden">
             <div className="container mx-auto px-4 md:px-12 mb-16 flex flex-col md:flex-row justify-between items-end">
-               <div>
-                  <h2 className="text-5xl font-black uppercase tracking-tighter mb-4">Placements</h2>
+               <motion.div
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true }}
+               >
+                  <h2 className="text-5xl font-black uppercase tracking-tighter mb-4 font-heading">Placements</h2>
                   <p className="text-secondary-400 max-w-lg">Launching careers at the world's leading technology companies.</p>
-               </div>
-               <div className="flex gap-8 mt-8 md:mt-0">
+               </motion.div>
+               <motion.div 
+                  className="flex gap-8 mt-8 md:mt-0"
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true }}
+               >
                   {stats.map((stat, i) => (
-                     <div key={i}>
-                        <div className="text-4xl font-black text-primary-500 mb-1">{stat.value}</div>
+                     <motion.div 
+                        key={i}
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ duration: 0.3 }}
+                     >
+                        <div className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary-400 via-primary-500 to-orange-400 mb-1">{stat.value}</div>
                         <div className="text-xs font-bold uppercase tracking-widest text-secondary-500">{stat.label}</div>
-                     </div>
+                     </motion.div>
                   ))}
-               </div>
+               </motion.div>
             </div>
 
-            {/* Recruiters Marquee */}
-            <div className="relative py-12 border-t border-white/10 bg-white/5">
-               <div className="flex animate-marquee whitespace-nowrap gap-20">
-                  {recruiters.concat(recruiters).map((r, i) => (
-                     <span key={i} className="text-4xl font-black text-white/20 uppercase hover:text-primary-500 transition-colors cursor-default">
+            {/* Recruiters Smooth Scrolling - Right to Left */}
+            <div className="relative py-12 border-t border-white/10 bg-gradient-to-r from-white/5 via-primary-500/10 to-white/5 overflow-hidden">
+               <div className="flex animate-marquee hover:pause-animation whitespace-nowrap">
+                  {[...recruiters, ...recruiters].map((r, i) => (
+                     <span key={i} className="text-4xl font-black text-white/20 uppercase hover:text-primary-500 transition-colors cursor-default mx-10">
                         {r}
                      </span>
                   ))}
@@ -180,70 +217,96 @@ const Home: React.FC = () => {
 
          {/* 6. INFRASTRUCTURE GALLERY */}
          <section className="py-32 bg-white">
-            <div className="container mx-auto px-4 md:px-12 mb-16">
-               <h2 className="text-5xl font-black text-secondary-900 uppercase tracking-tighter mb-4">Campus Life</h2>
+            <motion.div 
+               className="container mx-auto px-4 md:px-12 mb-16"
+               initial={{ opacity: 0, y: 30 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               transition={{ duration: 0.6 }}
+               viewport={{ once: true }}
+            >
+               <h2 className="text-5xl font-black text-secondary-900 uppercase tracking-tighter mb-4 font-heading">Campus Life</h2>
                <p className="text-secondary-500 font-medium">World-class facilities for holistic development.</p>
-            </div>
+            </motion.div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 h-[600px] md:h-[400px]">
                {facilities.map((fac, i) => (
-                  <div key={i} className="relative group overflow-hidden border-r border-white">
+                  <motion.div 
+                     key={i} 
+                     className="relative group overflow-hidden border-r border-white"
+                     initial={{ opacity: 0, scale: 0.9 }}
+                     whileInView={{ opacity: 1, scale: 1 }}
+                     transition={{ duration: 0.5, delay: i * 0.1 }}
+                     viewport={{ once: true }}
+                  >
                      <img src={fac.img} alt={fac.title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-110" />
-                     <div className="absolute inset-0 bg-secondary-900/80 group-hover:bg-primary-500/80 opacity-60 transition-colors"></div>
+                     <div className="absolute inset-0 bg-gradient-to-br from-secondary-900/80 to-secondary-800/90 group-hover:from-primary-600/80 group-hover:to-orange-500/80 opacity-60 transition-all duration-500"></div>
                      <div className="absolute inset-0 flex items-center justify-center">
                         <h3 className="text-2xl font-black text-white uppercase tracking-widest opacity-80 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
                            {fac.title}
                         </h3>
                      </div>
-                  </div>
+                  </motion.div>
                ))}
             </div>
          </section>
 
          {/* 7. TESTIMONIALS */}
-         <section className="py-24 bg-gray-50 border-y border-gray-100">
-            <div className="container mx-auto px-4 md:px-12 text-center max-w-4xl">
-               <Quote size={48} className="text-primary-500 mx-auto mb-8 opacity-50" />
+         <section className="py-24 bg-gradient-to-br from-gray-50 via-primary-50/20 to-gray-50 border-y border-gray-100">
+            <motion.div 
+               className="container mx-auto px-4 md:px-12 text-center max-w-4xl"
+               initial={{ opacity: 0, y: 30 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               transition={{ duration: 0.6 }}
+               viewport={{ once: true }}
+            >
+               <Quote size={48} className="text-primary-500 mx-auto mb-8 opacity-50 animate-float" />
                <div className="text-2xl md:text-4xl font-light italic leading-relaxed text-secondary-900 mb-12">
                   "{testimonials[activeTestimonial].text}"
                </div>
                <div>
                   <div className="font-bold text-lg uppercase tracking-wide text-secondary-900">{testimonials[activeTestimonial].name}</div>
-                  <div className="text-sm font-bold text-primary-500 uppercase tracking-widest">{testimonials[activeTestimonial].role}</div>
+                  <div className="text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-orange-400 uppercase tracking-widest">{testimonials[activeTestimonial].role}</div>
                </div>
                <div className="flex justify-center gap-2 mt-8">
                   {testimonials.map((_, i) => (
                      <button
                         key={i}
                         onClick={() => setActiveTestimonial(i)}
-                        className={`w-3 h-3 rounded-full transition-all ${activeTestimonial === i ? 'bg-primary-500 w-8' : 'bg-gray-300'}`}
+                        className={`h-3 rounded-full transition-all duration-300 ${activeTestimonial === i ? 'bg-gradient-to-r from-primary-600 to-orange-400 w-8' : 'bg-gray-300 w-3 hover:bg-primary-300'}`}
                      />
                   ))}
                </div>
-            </div>
+            </motion.div>
          </section>
 
          {/* 8. CONTACT & MAP */}
          <section className="grid grid-cols-1 lg:grid-cols-2">
-            <div className="bg-secondary-900 text-white p-16 md:p-32 flex flex-col justify-center">
-               <span className="text-primary-500 font-bold uppercase tracking-widest text-xs mb-4 block">Get In Touch</span>
-               <h2 className="text-5xl font-black uppercase tracking-tighter mb-8">Contact Us</h2>
-               <div className="space-y-8">
-                  <div className="flex items-start gap-4">
-                     <MapPin className="text-primary-500 mt-1" />
-                     <p className="text-lg leading-relaxed text-secondary-300">
-                        Rotarypuram Village, Bukkaraya Samudram,<br />
-                        Anantapur, Andhra Pradesh - 515741
-                     </p>
+            <div className="bg-gradient-to-br from-secondary-900 via-secondary-800 to-secondary-900 text-white p-16 md:p-32 flex flex-col justify-center">
+               <motion.div
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true }}
+               >
+                  <span className="text-primary-500 font-bold uppercase tracking-widest text-xs mb-4 block">Get In Touch</span>
+                  <h2 className="text-5xl font-black uppercase tracking-tighter mb-8 font-heading">Contact Us</h2>
+                  <div className="space-y-8">
+                     <div className="flex items-start gap-4 hover:translate-x-2 transition-transform duration-300">
+                        <MapPin className="text-primary-500 mt-1" />
+                        <p className="text-lg leading-relaxed text-secondary-300">
+                           Rotarypuram Village, Bukkaraya Samudram,<br />
+                           Anantapur, Andhra Pradesh - 515741
+                        </p>
+                     </div>
+                     <div className="flex items-center gap-4 hover:translate-x-2 transition-transform duration-300">
+                        <Phone className="text-primary-500" />
+                        <p className="text-lg text-secondary-300">+91 95055 05566</p>
+                     </div>
+                     <div className="flex items-center gap-4 hover:translate-x-2 transition-transform duration-300">
+                        <Mail className="text-primary-500" />
+                        <p className="text-lg text-secondary-300">principal@srit.edu.in</p>
+                     </div>
                   </div>
-                  <div className="flex items-center gap-4">
-                     <Phone className="text-primary-500" />
-                     <p className="text-lg text-secondary-300">+91 95055 05566</p>
-                  </div>
-                  <div className="flex items-center gap-4">
-                     <Mail className="text-primary-500" />
-                     <p className="text-lg text-secondary-300">principal@srit.edu.in</p>
-                  </div>
-               </div>
+               </motion.div>
             </div>
             <div className="bg-gray-200 min-h-[500px] relative grayscale hover:grayscale-0 transition-all duration-700">
                <iframe
