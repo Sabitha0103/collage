@@ -3,6 +3,11 @@ import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { ArrowRight, Zap, Database, Shield, Globe, MapPin, Phone, Mail, ChevronRight, Award, Users, BookOpen, Quote, Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import HeroScene from '../components/3d/HeroScene';
+import VirtualCampusTour from '../components/VirtualCampusTour';
+import EnhancedTestimonials from '../components/EnhancedTestimonials';
+import ResearchInnovation from '../components/ResearchInnovation';
+import AlumniNetwork from '../components/AlumniNetwork';
+import QuickFacts from '../components/QuickFacts';
 
 // -- DATA --
 const notices = [
@@ -215,70 +220,22 @@ const Home: React.FC = () => {
             </div>
          </section>
 
-         {/* 6. INFRASTRUCTURE GALLERY */}
-         <section className="py-32 bg-white">
-            <motion.div 
-               className="container mx-auto px-4 md:px-12 mb-16"
-               initial={{ opacity: 0, y: 30 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               transition={{ duration: 0.6 }}
-               viewport={{ once: true }}
-            >
-               <h2 className="text-5xl font-black text-secondary-900 uppercase tracking-tighter mb-4 font-heading">Campus Life</h2>
-               <p className="text-secondary-500 font-medium">World-class facilities for holistic development.</p>
-            </motion.div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 h-[600px] md:h-[400px]">
-               {facilities.map((fac, i) => (
-                  <motion.div 
-                     key={i} 
-                     className="relative group overflow-hidden border-r border-white"
-                     initial={{ opacity: 0, scale: 0.9 }}
-                     whileInView={{ opacity: 1, scale: 1 }}
-                     transition={{ duration: 0.5, delay: i * 0.1 }}
-                     viewport={{ once: true }}
-                  >
-                     <img src={fac.img} alt={fac.title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-110" />
-                     <div className="absolute inset-0 bg-gradient-to-br from-secondary-900/80 to-secondary-800/90 group-hover:from-primary-600/80 group-hover:to-orange-500/80 opacity-60 transition-all duration-500"></div>
-                     <div className="absolute inset-0 flex items-center justify-center">
-                        <h3 className="text-2xl font-black text-white uppercase tracking-widest opacity-80 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                           {fac.title}
-                        </h3>
-                     </div>
-                  </motion.div>
-               ))}
-            </div>
-         </section>
+         {/* 6. QUICK FACTS ANIMATED COUNTERS */}
+         <QuickFacts />
 
-         {/* 7. TESTIMONIALS */}
-         <section className="py-24 bg-gradient-to-br from-gray-50 via-primary-50/20 to-gray-50 border-y border-gray-100">
-            <motion.div 
-               className="container mx-auto px-4 md:px-12 text-center max-w-4xl"
-               initial={{ opacity: 0, y: 30 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               transition={{ duration: 0.6 }}
-               viewport={{ once: true }}
-            >
-               <Quote size={48} className="text-primary-500 mx-auto mb-8 opacity-50 animate-float" />
-               <div className="text-2xl md:text-4xl font-light italic leading-relaxed text-secondary-900 mb-12">
-                  "{testimonials[activeTestimonial].text}"
-               </div>
-               <div>
-                  <div className="font-bold text-lg uppercase tracking-wide text-secondary-900">{testimonials[activeTestimonial].name}</div>
-                  <div className="text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-orange-400 uppercase tracking-widest">{testimonials[activeTestimonial].role}</div>
-               </div>
-               <div className="flex justify-center gap-2 mt-8">
-                  {testimonials.map((_, i) => (
-                     <button
-                        key={i}
-                        onClick={() => setActiveTestimonial(i)}
-                        className={`h-3 rounded-full transition-all duration-300 ${activeTestimonial === i ? 'bg-gradient-to-r from-primary-600 to-orange-400 w-8' : 'bg-gray-300 w-3 hover:bg-primary-300'}`}
-                     />
-                  ))}
-               </div>
-            </motion.div>
-         </section>
+         {/* 7. VIRTUAL CAMPUS TOUR */}
+         <VirtualCampusTour />
 
-         {/* 8. CONTACT & MAP */}
+         {/* 8. RESEARCH & INNOVATION HUB */}
+         <ResearchInnovation />
+
+         {/* 9. ALUMNI NETWORK */}
+         <AlumniNetwork />
+
+         {/* 10. ENHANCED TESTIMONIALS */}
+         <EnhancedTestimonials />
+
+         {/* 11. CONTACT & MAP */}
          <section className="grid grid-cols-1 lg:grid-cols-2">
             <div className="bg-gradient-to-br from-secondary-900 via-secondary-800 to-secondary-900 text-white p-16 md:p-32 flex flex-col justify-center">
                <motion.div

@@ -5,13 +5,18 @@ import {
   Linkedin, Globe, Calendar, Award 
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import CurriculumRoadmap from '../components/CurriculumRoadmap';
+import FacultyResearchHighlights from '../components/FacultyResearchHighlights';
+import StudentProjectShowcase from '../components/StudentProjectShowcase';
 
 const navItems = [
   { id: 'overview', label: 'Overview' },
   { id: 'hod', label: "HOD's Message" },
   { id: 'faculty', label: 'Faculty' },
+  { id: 'faculty-research', label: 'Faculty Research' },
   { id: 'labs', label: 'Laboratories' },
-  { id: 'curriculum', label: 'Curriculum' },
+  { id: 'curriculum-roadmap', label: 'Curriculum Roadmap' },
+  { id: 'student-projects', label: 'Student Projects' },
   { id: 'placements', label: 'Placements' },
 ];
 
@@ -183,6 +188,9 @@ const Department: React.FC = () => {
                    </div>
                 </section>
 
+                {/* Faculty Research Highlights - NEW */}
+                <FacultyResearchHighlights />
+
                 {/* Labs */}
                 <section id="labs" className="scroll-mt-28">
                    <h2 className="text-3xl font-heading font-bold text-secondary-900 mb-6">Laboratories</h2>
@@ -202,24 +210,11 @@ const Department: React.FC = () => {
                    </div>
                 </section>
 
-                {/* Curriculum */}
-                <section id="curriculum" className="scroll-mt-28">
-                   <h2 className="text-3xl font-heading font-bold text-secondary-900 mb-6">Curriculum Timeline</h2>
-                   <div className="border-l-2 border-secondary-200 pl-8 space-y-8">
-                      {[
-                        { year: "Year 1", focus: "Foundations", desc: "Programming in C, Python, Mathematics, Digital Logic." },
-                        { year: "Year 2", focus: "Core Concepts", desc: "Data Structures, Algorithms, OS, DBMS, Computer Architecture." },
-                        { year: "Year 3", focus: "Advanced Topics", desc: "AI, Machine Learning, Networks, Software Engineering." },
-                        { year: "Year 4", focus: "Project & Electives", desc: "Capstone Project, Internship, Cloud Computing, Cyber Security." }
-                      ].map((item, i) => (
-                        <div key={i} className="relative">
-                           <div className="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-white border-4 border-primary-500"></div>
-                           <h3 className="font-bold text-secondary-900 text-lg">{item.year}: <span className="text-primary-600">{item.focus}</span></h3>
-                           <p className="text-secondary-600 mt-2">{item.desc}</p>
-                        </div>
-                      ))}
-                   </div>
-                </section>
+                {/* Curriculum Roadmap - NEW */}
+                <CurriculumRoadmap />
+
+                {/* Student Project Showcase - NEW */}
+                <StudentProjectShowcase />
 
                 {/* Placements */}
                 <section id="placements" className="scroll-mt-28 mb-16">
