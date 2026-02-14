@@ -201,61 +201,84 @@ const ResearchInnovation: React.FC = () => {
           ))}
         </motion.div>
 
-        {/* Research Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
-          {filteredProjects.map((project, idx) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -8 }}
-              className="relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 group"
-            >
-              {/* Gradient top bar */}
-              <div className={`h-2 bg-gradient-to-r ${project.color}`}></div>
-              
-              <div className="p-8">
-                {/* Icon and Status */}
-                <div className="flex items-start justify-between mb-4">
-                  <div className={`w-16 h-16 bg-gradient-to-r ${project.color} rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-primary-500/50 transition-shadow`}>
-                    <project.icon className="text-white" size={32} />
+        {/* Research Projects Grid - Asymmetric Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
+          {filteredProjects.map((project, idx) => {
+            const gradientDirection = idx % 2 === 0 ? 'bg-gradient-to-r' : 'bg-gradient-to-l';
+            const iconGradient = idx % 2 === 0 ? 'bg-gradient-to-br' : 'bg-gradient-to-tr';
+            const decorativeGradient = idx % 2 === 0 ? 'bg-gradient-to-bl' : 'bg-gradient-to-br';
+            
+            return (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 20, rotate: idx % 2 === 0 ? -2 : 2 }}
+                whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -8, rotate: idx % 2 === 0 ? 2 : -2, scale: 1.02 }}
+                className={`relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 group ${
+                  idx === 0 ? 'md:col-span-2 md:row-span-1' : 
+                  idx === 2 ? 'md:col-span-1 md:row-span-1 md:mt-12' :
+                  idx === 3 ? 'md:col-span-2 md:row-span-1 md:-mt-6' :
+                  ''
+                }`}
+                style={{
+                  transformOrigin: 'center center'
+                }}
+              >
+                {/* Gradient top bar with varying directions */}
+                <div className={`h-2 ${gradientDirection} ${project.color}`}></div>
+                
+                <div className={`${idx === 0 ? 'p-10' : 'p-8'}`}>
+                  {/* Icon and Status */}
+                  <div className="flex items-start justify-between mb-4">
+                    <motion.div 
+                      className={`w-16 h-16 ${iconGradient} ${project.color} rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-primary-500/50 transition-shadow`}
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <project.icon className="text-white" size={32} />
+                    </motion.div>
+                    <span className={`px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
+                      project.status === 'Ongoing' ? 'bg-blue-100 text-blue-600' :
+                      project.status === 'Completed' ? 'bg-green-100 text-green-600' :
+                      'bg-orange-100 text-orange-600'
+                    }`}>
+                      {project.status}
+                    </span>
                   </div>
-                  <span className={`px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
-                    project.status === 'Ongoing' ? 'bg-blue-100 text-blue-600' :
-                    project.status === 'Completed' ? 'bg-green-100 text-green-600' :
-                    'bg-orange-100 text-orange-600'
-                  }`}>
-                    {project.status}
-                  </span>
-                </div>
 
-                {/* Content */}
-                <h3 className="text-2xl font-black text-secondary-900 mb-3 uppercase tracking-tight">
-                  {project.title}
-                </h3>
-                <p className="text-secondary-600 mb-4 leading-relaxed">
-                  {project.description}
-                </p>
+                  {/* Content */}
+                  <h3 className={`${idx === 0 ? 'text-3xl' : 'text-2xl'} font-black text-secondary-900 mb-3 uppercase tracking-tight`}>
+                    {project.title}
+                  </h3>
+                  <p className="text-secondary-600 mb-4 leading-relaxed">
+                    {project.description}
+                  </p>
 
-                {/* Footer */}
-                <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                  <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-primary-500">{project.category}</span>
-                    <p className="text-sm text-secondary-500 mt-1">{project.team}</p>
+                  {/* Footer */}
+                  <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                    <div>
+                      <span className="text-xs font-bold uppercase tracking-wider text-primary-500">{project.category}</span>
+                      <p className="text-sm text-secondary-500 mt-1">{project.team}</p>
+                    </div>
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="px-4 py-2 bg-gradient-to-r from-primary-600 to-orange-500 text-white rounded-lg text-xs font-bold uppercase tracking-wider hover:shadow-lg hover:shadow-primary-500/50 transition-all"
+                    >
+                      Learn More
+                    </motion.button>
                   </div>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="px-4 py-2 bg-gradient-to-r from-primary-600 to-orange-500 text-white rounded-lg text-xs font-bold uppercase tracking-wider hover:shadow-lg hover:shadow-primary-500/50 transition-all"
-                  >
-                    Learn More
-                  </motion.button>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+                
+                {/* Decorative corner gradient */}
+                <div className="absolute top-0 right-0 w-32 h-32 opacity-0 group-hover:opacity-10 transition-opacity pointer-events-none">
+                  <div className={`w-full h-full ${decorativeGradient} ${project.color} rounded-bl-full`}></div>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* Publications Section */}

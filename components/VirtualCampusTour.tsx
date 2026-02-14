@@ -16,28 +16,28 @@ const campusSpots: CampusSpot[] = [
     title: "Main Campus Gate",
     description: "Welcome to SRIT - Where innovation meets tradition. Our state-of-the-art campus spans across 50 acres of lush greenery.",
     image: "https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=1200",
-    facilities: ["Security", "Visitor Center", "Parking"]
+    facilities: ["Main Entrance", "Reception", "Campus Map"]
   },
   {
     id: 2,
     title: "Central Library",
     description: "A modern library with over 50,000 books, digital resources, and quiet study spaces equipped with the latest technology.",
     image: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=1200",
-    facilities: ["Reading Rooms", "Digital Library", "Research Center", "24/7 Access"]
+    facilities: ["Reading Rooms", "Digital Library", "Research Center"]
   },
   {
     id: 3,
     title: "Advanced Computer Labs",
     description: "High-performance computing labs with latest software and hardware for AI, ML, and software development.",
     image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1200",
-    facilities: ["AI/ML Lab", "Cloud Computing", "Cybersecurity Lab", "400+ Systems"]
+    facilities: ["AI/ML Lab", "Cloud Computing", "Cybersecurity Lab"]
   },
   {
     id: 4,
     title: "Innovation & Research Center",
     description: "A dedicated space for research, innovation, and entrepreneurship with modern equipment and mentorship.",
     image: "https://images.unsplash.com/photo-1581094271901-8022df4466f9?q=80&w=1200",
-    facilities: ["Research Labs", "Incubation Center", "Prototyping Lab", "Collaboration Spaces"]
+    facilities: ["Research Labs", "Incubation Center", "Prototyping Lab"]
   },
   {
     id: 5,
@@ -51,7 +51,7 @@ const campusSpots: CampusSpot[] = [
     title: "Modern Auditorium",
     description: "A 1000-seater auditorium with advanced audio-visual systems for conferences, seminars, and cultural events.",
     image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1200",
-    facilities: ["1000 Seats", "HD Projection", "Sound System", "Green Room"]
+    facilities: ["HD Projection", "Sound System", "Green Room"]
   }
 ];
 
@@ -180,32 +180,6 @@ const VirtualCampusTour: React.FC = () => {
             >
               <ChevronRight size={24} className="group-hover:scale-110 transition-transform" />
             </button>
-          </div>
-
-          {/* Thumbnail Navigation */}
-          <div className="mt-8 grid grid-cols-3 md:grid-cols-6 gap-4">
-            {campusSpots.map((spot, idx) => (
-              <motion.button
-                key={spot.id}
-                onClick={() => setCurrentSlide(idx)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className={`relative overflow-hidden rounded-xl h-20 md:h-24 group ${
-                  currentSlide === idx ? 'ring-4 ring-primary-500' : 'opacity-60 hover:opacity-100'
-                }`}
-              >
-                <img
-                  src={spot.image}
-                  alt={spot.title}
-                  className="w-full h-full object-cover"
-                />
-                <div className={`absolute inset-0 bg-gradient-to-t ${
-                  currentSlide === idx
-                    ? 'from-primary-500/80 to-transparent'
-                    : 'from-secondary-900/60 to-transparent'
-                } transition-all duration-300`}></div>
-              </motion.button>
-            ))}
           </div>
         </motion.div>
       </div>
