@@ -11,6 +11,8 @@ import QuickFacts from '../components/QuickFacts';
 import EventsCalendar from '../components/EventsCalendar';
 import NewsAnnouncements from '../components/NewsAnnouncements';
 import FacultyHighlights from '../components/FacultyHighlights';
+import AchievementsShowcase from '../components/AchievementsShowcase';
+import CampusFacilities from '../components/CampusFacilities';
 
 // -- DATA --
 const notices = [
@@ -380,19 +382,25 @@ const Home: React.FC = () => {
          {/* 9. VIRTUAL CAMPUS TOUR */}
          <VirtualCampusTour />
 
-         {/* 10. FACULTY HIGHLIGHTS */}
+         {/* 10. CAMPUS FACILITIES */}
+         <CampusFacilities />
+
+         {/* 11. FACULTY HIGHLIGHTS */}
          <FacultyHighlights />
 
-         {/* 11. RESEARCH & INNOVATION HUB */}
+         {/* 12. RESEARCH & INNOVATION HUB */}
          <ResearchInnovation />
 
-         {/* 12. ALUMNI NETWORK */}
+         {/* 13. ALUMNI NETWORK */}
          <AlumniNetwork />
 
-         {/* 13. ENHANCED TESTIMONIALS */}
+         {/* 14. ACHIEVEMENTS SHOWCASE */}
+         <AchievementsShowcase />
+
+         {/* 15. ENHANCED TESTIMONIALS */}
          <EnhancedTestimonials />
 
-         {/* 14. CONTACT & MAP */}
+         {/* 16. CONTACT & MAP */}
          <section className="grid grid-cols-1 lg:grid-cols-2">
             <div className="bg-gradient-to-br from-secondary-900 via-secondary-800 to-secondary-900 text-white p-16 md:p-32 flex flex-col justify-center">
                <motion.div
