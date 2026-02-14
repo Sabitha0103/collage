@@ -19,6 +19,27 @@ const notices = [
 
 const recruiters = ["TCS", "Infosys", "Wipro", "Cognizant", "Accenture", "IBM", "Amazon", "Google", "Microsoft", "Oracle", "Cisco", "Tech Mahindra"];
 
+// Company logos data with placeholder logo URLs
+const companyLogos = [
+   { name: "TCS", logo: "https://upload.wikimedia.org/wikipedia/commons/9/95/Tata_Consultancy_Services_Logo.svg" },
+   { name: "Infosys", logo: "https://upload.wikimedia.org/wikipedia/commons/9/95/Infosys_logo.svg" },
+   { name: "Wipro", logo: "https://upload.wikimedia.org/wikipedia/commons/a/a0/Wipro_Primary_Logo_Color_RGB.svg" },
+   { name: "Cognizant", logo: "https://upload.wikimedia.org/wikipedia/commons/6/60/Cognizant_logo_2022.svg" },
+   { name: "Accenture", logo: "https://upload.wikimedia.org/wikipedia/commons/c/cd/Accenture.svg" },
+   { name: "IBM", logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" },
+   { name: "Amazon", logo: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" },
+   { name: "Google", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" },
+   { name: "Microsoft", logo: "https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg" },
+   { name: "Oracle", logo: "https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg" },
+   { name: "Cisco", logo: "https://upload.wikimedia.org/wikipedia/commons/0/08/Cisco_logo_blue_2016.svg" },
+   { name: "Tech Mahindra", logo: "https://upload.wikimedia.org/wikipedia/commons/3/3a/Tech_Mahindra_New_Logo.svg" },
+   { name: "HCL", logo: "https://upload.wikimedia.org/wikipedia/commons/d/df/HCLTech_logo.svg" },
+   { name: "Capgemini", logo: "https://upload.wikimedia.org/wikipedia/commons/f/fc/Capgemini_201x_logo.svg" },
+   { name: "Adobe", logo: "https://upload.wikimedia.org/wikipedia/commons/7/7b/Adobe_Systems_logo_and_wordmark.svg" },
+   { name: "SAP", logo: "https://upload.wikimedia.org/wikipedia/commons/5/59/SAP_2011_logo.svg" }
+];
+
+
 const stats = [
    { label: "Highest Package", value: "24 LPA" },
    { label: "Placement Rate", value: "95%" },
@@ -50,8 +71,16 @@ const Home: React.FC = () => {
 
          {/* 1. HERO SECTION */}
          <section className="relative h-screen w-full flex flex-col justify-center overflow-hidden border-b border-gray-100">
-            {/* Orange gradient background overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 via-orange-400/10 to-primary-600/5 pointer-events-none"></div>
+            {/* Background Image with Overlay */}
+            <div className="absolute inset-0 pointer-events-none">
+               <img 
+                  src="/Srit.jpg" 
+                  alt="SRIT Campus" 
+                  className="w-full h-full object-cover opacity-10"
+               />
+               {/* Orange gradient background overlay */}
+               <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 via-orange-400/10 to-primary-600/5"></div>
+            </div>
             
             <HeroScene />
 
@@ -68,39 +97,6 @@ const Home: React.FC = () => {
                         transition={{ duration: 1.5, ease: "easeOut" }}
                      />
                   </div>
-                  
-                  {/* SRIT College Logo with animation and glowing effect */}
-                  <motion.div 
-                     className="absolute top-8 right-8 md:top-12 md:right-12 pointer-events-auto"
-                     initial={{ scale: 0, opacity: 0, rotate: -180 }}
-                     animate={{ scale: 1, opacity: 1, rotate: 0 }}
-                     transition={{ duration: 1, delay: 0.3, type: "spring", stiffness: 100 }}
-                  >
-                     <motion.div
-                        animate={{ 
-                           y: [0, -10, 0],
-                           scale: [1, 1.05, 1]
-                        }}
-                        transition={{ 
-                           duration: 3, 
-                           repeat: Infinity, 
-                           ease: "easeInOut" 
-                        }}
-                        className="relative group"
-                     >
-                        {/* Glowing effect border */}
-                        <div className="absolute -inset-2 bg-gradient-to-r from-primary-500 via-orange-400 to-primary-600 rounded-full blur-lg opacity-75 group-hover:opacity-100 animate-pulse"></div>
-                        
-                        {/* Logo container */}
-                        <div className="relative w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-white shadow-2xl hover:border-primary-400 transition-all duration-300">
-                           <img 
-                              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='100' fill='%23f97316'/%3E%3Ccircle cx='100' cy='100' r='85' fill='white'/%3E%3Cpath d='M100 30 L150 70 L150 130 L100 170 L50 130 L50 70 Z' fill='%23f97316'/%3E%3Ctext x='100' y='115' text-anchor='middle' font-size='45' font-weight='bold' fill='white'%3ESRIT%3C/text%3E%3C/svg%3E"
-                              alt="SRIT College Logo"
-                              className="w-full h-full object-cover"
-                           />
-                        </div>
-                     </motion.div>
-                  </motion.div>
                   
                   <h1 className="text-[20vw] md:text-[25vw] font-black tracking-tighter leading-none text-primary-500 select-none -ml-4 md:-ml-12 animate-float relative z-10">
                      SRIT
@@ -211,122 +207,161 @@ const Home: React.FC = () => {
          </section>
 
          {/* 4. ACADEMICS & DEPARTMENTS PREVIEW */}
-         <section className="py-32 bg-white">
+         <section className="py-24 bg-white">
             <motion.div 
-               className="container mx-auto px-4 md:px-12 text-center mb-20"
+               className="container mx-auto px-4 md:px-12 text-center mb-16"
                initial={{ opacity: 0, y: 30 }}
                whileInView={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.6 }}
                viewport={{ once: true }}
             >
                <span className="text-primary-500 font-bold uppercase tracking-widest text-xs mb-2 block">Academic Programs</span>
-               <h2 className="text-5xl font-black text-secondary-900 uppercase tracking-tighter font-heading">
+               <h2 className="text-3xl md:text-4xl font-black text-secondary-900 uppercase tracking-tight font-poppins">
                   Schools of Study
                </h2>
             </motion.div>
             
-            {/* Departments as animated lines */}
-            <div className="container mx-auto px-4 md:px-12 max-w-4xl">
-               <div className="space-y-6">
+            {/* Departments as animated cards */}
+            <div className="container mx-auto px-4 md:px-12 max-w-6xl">
+               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {['Computer Science & Engineering', 'Electronics & Communication Engineering', 'Electrical & Electronics Engineering', 'Mechanical Engineering', 'Civil Engineering', 'Humanities & Sciences'].map((dept, i) => (
                      <motion.div 
                         key={i} 
-                        initial={{ opacity: 0, x: -50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: i * 0.1 }}
                         viewport={{ once: true }}
-                        whileHover={{ x: 10, scale: 1.02 }}
+                        whileHover={{ y: -8, scale: 1.02 }}
                         className="group relative"
                      >
-                        {/* Line with gradient underline */}
-                        <div className="bg-gradient-to-r from-gray-50 to-white border-l-4 border-primary-500 hover:border-orange-400 rounded-r-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 flex items-center justify-between">
-                           <div className="flex items-center gap-4 flex-1">
-                              {/* Icon circle */}
-                              <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-orange-400 rounded-full flex items-center justify-center text-white shadow-lg group-hover:shadow-primary-500/50 transition-all flex-shrink-0">
-                                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                              </div>
-                              
-                              {/* Department name */}
-                              <h3 className="font-bold text-xl md:text-2xl text-secondary-900 uppercase tracking-tight group-hover:text-primary-600 transition-colors">
-                                 {dept}
-                              </h3>
+                        {/* Card with gradient border effect */}
+                        <div className="relative bg-white border border-gray-200 rounded-xl p-6 shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden">
+                           {/* Gradient overlay on hover */}
+                           <div className="absolute inset-0 bg-gradient-to-br from-primary-500/0 to-orange-400/0 group-hover:from-primary-500/5 group-hover:to-orange-400/5 transition-all duration-300 rounded-xl"></div>
+                           
+                           {/* Icon circle */}
+                           <div className="relative w-14 h-14 bg-gradient-to-br from-primary-500 to-orange-400 rounded-xl flex items-center justify-center text-white shadow-lg group-hover:shadow-primary-500/50 transition-all mb-4 group-hover:scale-110 group-hover:rotate-6">
+                              <ArrowRight size={24} className="group-hover:translate-x-1 transition-transform" />
                            </div>
+                           
+                           {/* Department name */}
+                           <h3 className="relative font-inter font-bold text-base text-secondary-900 mb-3 group-hover:text-primary-600 transition-colors leading-snug">
+                              {dept}
+                           </h3>
                            
                            {/* View link */}
                            <Link 
                               to="/departments" 
-                              className="text-xs font-bold uppercase tracking-widest text-primary-500 opacity-0 group-hover:opacity-100 transition-opacity hover:text-orange-400 flex items-center gap-2"
+                              className="relative text-xs font-semibold uppercase tracking-wider text-primary-500 opacity-0 group-hover:opacity-100 transition-all hover:text-orange-400 flex items-center gap-1 font-inter"
                            >
-                              View Program <ChevronRight size={16} />
+                              Explore <ChevronRight size={14} />
                            </Link>
+                           
+                           {/* Bottom accent line */}
+                           <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-primary-500 to-orange-400 group-hover:w-full transition-all duration-500 rounded-b-xl"></div>
                         </div>
-                        
-                        {/* Gradient underline animation */}
-                        <motion.div
-                           initial={{ width: 0 }}
-                           whileInView={{ width: '100%' }}
-                           transition={{ duration: 0.8, delay: i * 0.1 + 0.3 }}
-                           viewport={{ once: true }}
-                           className="h-1 bg-gradient-to-r from-primary-500 via-orange-400 to-transparent mt-2 rounded-full opacity-50 group-hover:opacity-100 transition-opacity"
-                        />
-                        
-                        {/* Subtle separator line */}
-                        {i < 5 && (
-                           <div className="h-px w-full bg-gradient-to-r from-transparent via-gray-200 to-transparent mt-6" />
-                        )}
                      </motion.div>
                   ))}
                </div>
             </div>
             
             <div className="text-center mt-12">
-               <Link to="/departments" className="inline-block bg-gradient-to-r from-primary-600 via-primary-500 to-orange-400 text-white px-8 py-3 rounded font-bold uppercase text-sm tracking-widest hover:shadow-lg hover:shadow-primary-500/50 transition-all duration-300 hover:scale-105">
+               <Link to="/departments" className="inline-block bg-gradient-to-r from-primary-600 via-primary-500 to-orange-400 text-white px-6 py-3 rounded-lg font-bold uppercase text-sm tracking-wide hover:shadow-lg hover:shadow-primary-500/50 transition-all duration-300 hover:scale-105 font-inter">
                   View All Departments
                </Link>
             </div>
          </section>
 
-         {/* 5. PLACEMENTS & RECRUITERS */}
-         <section className="py-24 bg-gradient-to-br from-secondary-900 via-secondary-800 to-secondary-900 text-white overflow-hidden">
-            <div className="container mx-auto px-4 md:px-12 mb-16 flex flex-col md:flex-row justify-between items-end">
+         {/* 5. PLACEMENTS & RECRUITERS - REDESIGNED */}
+         <section className="py-24 bg-gradient-to-br from-white via-primary-50/30 to-orange-50/20 overflow-hidden">
+            <div className="container mx-auto px-4 md:px-12">
                <motion.div
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  className="text-center mb-16"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
                   viewport={{ once: true }}
                >
-                  <h2 className="text-5xl font-black uppercase tracking-tighter mb-4 font-heading">Placements</h2>
-                  <p className="text-secondary-400 max-w-lg">Launching careers at the world's leading technology companies.</p>
+                  <span className="text-primary-500 font-bold uppercase tracking-widest text-xs mb-2 block">Career Success</span>
+                  <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight mb-4 font-poppins text-secondary-900">
+                     Our Top Recruiters
+                  </h2>
+                  <p className="text-secondary-600 max-w-2xl mx-auto font-inter">
+                     Building successful careers at world's leading technology companies
+                  </p>
                </motion.div>
+
+               {/* Placement Stats Cards */}
                <motion.div 
-                  className="flex gap-8 mt-8 md:mt-0"
-                  initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
                   viewport={{ once: true }}
                >
                   {stats.map((stat, i) => (
                      <motion.div 
                         key={i}
-                        whileHover={{ scale: 1.1 }}
+                        whileHover={{ scale: 1.05, y: -5 }}
                         transition={{ duration: 0.3 }}
+                        className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl border border-gray-100 relative overflow-hidden group"
                      >
-                        <div className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary-400 via-primary-500 to-orange-400 mb-1">{stat.value}</div>
-                        <div className="text-xs font-bold uppercase tracking-widest text-secondary-500">{stat.label}</div>
+                        {/* Background gradient */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-primary-500/0 to-orange-400/0 group-hover:from-primary-500/10 group-hover:to-orange-400/10 transition-all duration-300"></div>
+                        
+                        <div className="relative">
+                           <div className="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary-600 via-primary-500 to-orange-400 mb-2 font-poppins">
+                              {stat.value}
+                           </div>
+                           <div className="text-xs font-bold uppercase tracking-wider text-secondary-600 font-inter">
+                              {stat.label}
+                           </div>
+                        </div>
                      </motion.div>
                   ))}
                </motion.div>
-            </div>
 
-            {/* Recruiters Smooth Scrolling - Right to Left */}
-            <div className="relative py-12 border-t border-white/10 bg-gradient-to-r from-white/5 via-primary-500/10 to-white/5 overflow-hidden">
-               <div className="flex animate-marquee hover-pause whitespace-nowrap">
-                  {[...recruiters, ...recruiters].map((r, i) => (
-                     <span key={`${r}-${i}`} className="text-4xl font-black text-white/20 uppercase hover:text-primary-500 transition-colors cursor-default mx-10">
-                        {r}
-                     </span>
-                  ))}
-               </div>
+               {/* Company Logos Grid */}
+               <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true }}
+               >
+                  <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
+                     {companyLogos.map((company, i) => (
+                        <motion.div 
+                           key={i}
+                           initial={{ opacity: 0, scale: 0.8 }}
+                           whileInView={{ opacity: 1, scale: 1 }}
+                           transition={{ duration: 0.4, delay: i * 0.05 }}
+                           viewport={{ once: true }}
+                           whileHover={{ 
+                              scale: 1.08,
+                              y: -5,
+                              boxShadow: "0 20px 40px rgba(249, 115, 22, 0.15)"
+                           }}
+                           className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 flex items-center justify-center group border border-gray-100 hover:border-primary-200"
+                        >
+                           <div className="relative w-full h-16 flex items-center justify-center">
+                              <img 
+                                 src={company.logo} 
+                                 alt={`${company.name} logo`}
+                                 className="max-w-full max-h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300 opacity-70 group-hover:opacity-100"
+                                 onError={(e) => {
+                                    // Fallback to text if image fails to load
+                                    e.currentTarget.style.display = 'none';
+                                    const parent = e.currentTarget.parentElement;
+                                    if (parent) {
+                                       parent.innerHTML = `<span class="text-lg font-bold text-secondary-900">${company.name}</span>`;
+                                    }
+                                 }}
+                              />
+                           </div>
+                        </motion.div>
+                     ))}
+                  </div>
+               </motion.div>
             </div>
          </section>
 

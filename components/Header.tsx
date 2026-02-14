@@ -23,20 +23,28 @@ const Header: React.FC = () => {
 
   return (
     <>
-      {/* Brand - Fixed Top Left with Background Image and Gradient */}
+      {/* Brand - Fixed Top Left with SRIT Logo and Background */}
       <div className="fixed top-6 left-6 z-50">
         <Link to="/" className="relative flex flex-col items-start group">
           {/* Background Image with Gradient Overlay */}
-          <div className="absolute inset-0 -inset-x-8 -inset-y-4 rounded-lg overflow-hidden opacity-90 group-hover:opacity-100 transition-opacity">
+          <div className="absolute inset-0 -inset-x-4 -inset-y-2 rounded-lg overflow-hidden opacity-90 group-hover:opacity-100 transition-opacity">
             <img 
-              src="https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=500" 
-              alt="Campus" 
+              src="/Srit.jpg" 
+              alt="SRIT Campus" 
               className="w-full h-full object-cover"
             />
             {/* Orange Gradient Overlay */}
             <div className="absolute inset-0 bg-gradient-to-r from-primary-600/90 via-primary-500/85 to-orange-400/90"></div>
           </div>
-          <span className="relative text-2xl font-black tracking-tighter text-white group-hover:scale-105 transition-transform px-8 py-4">SRIT</span>
+          {/* SRIT College Logo */}
+          <div className="relative flex items-center gap-3 px-4 py-2">
+            <img 
+              src="/Srit.jpg" 
+              alt="SRIT Logo" 
+              className="w-12 h-12 rounded-full object-cover border-2 border-white shadow-lg group-hover:scale-110 transition-transform"
+            />
+            <span className="text-xl font-black tracking-tighter text-white group-hover:scale-105 transition-transform">SRIT</span>
+          </div>
         </Link>
       </div>
 
