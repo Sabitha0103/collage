@@ -201,27 +201,39 @@ const ResearchInnovation: React.FC = () => {
           ))}
         </motion.div>
 
-        {/* Research Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+        {/* Research Projects Grid - Asymmetric Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
           {filteredProjects.map((project, idx) => (
             <motion.div
               key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 20, rotate: idx % 2 === 0 ? -2 : 2 }}
+              whileInView={{ opacity: 1, y: 0, rotate: 0 }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               viewport={{ once: true }}
-              whileHover={{ y: -8 }}
-              className="relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 group"
+              whileHover={{ y: -8, rotate: idx % 2 === 0 ? 2 : -2, scale: 1.02 }}
+              className={`relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 group ${
+                idx === 0 ? 'md:col-span-2 md:row-span-1' : 
+                idx === 2 ? 'md:col-span-1 md:row-span-1 md:mt-12' :
+                idx === 3 ? 'md:col-span-2 md:row-span-1 md:-mt-6' :
+                ''
+              }`}
+              style={{
+                transformOrigin: 'center center'
+              }}
             >
-              {/* Gradient top bar */}
-              <div className={`h-2 bg-gradient-to-r ${project.color}`}></div>
+              {/* Gradient top bar with varying directions */}
+              <div className={`h-2 bg-gradient-to-${idx % 2 === 0 ? 'r' : 'l'} ${project.color}`}></div>
               
-              <div className="p-8">
+              <div className={`${idx === 0 ? 'p-10' : 'p-8'}`}>
                 {/* Icon and Status */}
                 <div className="flex items-start justify-between mb-4">
-                  <div className={`w-16 h-16 bg-gradient-to-r ${project.color} rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-primary-500/50 transition-shadow`}>
+                  <motion.div 
+                    className={`w-16 h-16 bg-gradient-to-${idx % 2 === 0 ? 'br' : 'tr'} ${project.color} rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-primary-500/50 transition-shadow`}
+                    whileHover={{ rotate: 360 }}
+                    transition={{ duration: 0.6 }}
+                  >
                     <project.icon className="text-white" size={32} />
-                  </div>
+                  </motion.div>
                   <span className={`px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
                     project.status === 'Ongoing' ? 'bg-blue-100 text-blue-600' :
                     project.status === 'Completed' ? 'bg-green-100 text-green-600' :
@@ -232,7 +244,7 @@ const ResearchInnovation: React.FC = () => {
                 </div>
 
                 {/* Content */}
-                <h3 className="text-2xl font-black text-secondary-900 mb-3 uppercase tracking-tight">
+                <h3 className={`${idx === 0 ? 'text-3xl' : 'text-2xl'} font-black text-secondary-900 mb-3 uppercase tracking-tight`}>
                   {project.title}
                 </h3>
                 <p className="text-secondary-600 mb-4 leading-relaxed">
@@ -253,6 +265,11 @@ const ResearchInnovation: React.FC = () => {
                     Learn More
                   </motion.button>
                 </div>
+              </div>
+              
+              {/* Decorative corner gradient */}
+              <div className="absolute top-0 right-0 w-32 h-32 opacity-0 group-hover:opacity-10 transition-opacity pointer-events-none">
+                <div className={`w-full h-full bg-gradient-to-${idx % 2 === 0 ? 'bl' : 'br'} ${project.color} rounded-bl-full`}></div>
               </div>
             </motion.div>
           ))}

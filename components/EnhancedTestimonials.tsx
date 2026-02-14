@@ -120,7 +120,7 @@ const EnhancedTestimonials: React.FC = () => {
   };
 
   return (
-    <section className="py-32 bg-gradient-to-br from-secondary-900 via-secondary-800 to-secondary-900 text-white relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-br from-secondary-900 via-secondary-800 to-secondary-900 text-white relative overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-500 rounded-full blur-3xl animate-float"></div>
@@ -166,7 +166,7 @@ const EnhancedTestimonials: React.FC = () => {
                 className="absolute inset-0"
               >
                 {/* Glassmorphism Card */}
-                <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 md:p-12 shadow-2xl">
+                <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-6 md:p-8 shadow-2xl">
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
                     {/* Image Section */}
                     <div className="md:col-span-1">
@@ -274,38 +274,6 @@ const EnhancedTestimonials: React.FC = () => {
                     : 'bg-white/30 w-3 h-3 hover:bg-white/50'
                 }`}
               />
-            ))}
-          </div>
-
-          {/* Testimonial Grid Preview */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mt-16">
-            {testimonials.map((testimonial, idx) => (
-              <motion.button
-                key={testimonial.id}
-                onClick={() => {
-                  setDirection(idx > activeIndex ? 1 : -1);
-                  setActiveIndex(idx);
-                }}
-                whileHover={{ scale: 1.05, y: -5 }}
-                whileTap={{ scale: 0.95 }}
-                className={`relative overflow-hidden rounded-xl aspect-square group ${
-                  activeIndex === idx ? 'ring-4 ring-primary-500' : 'opacity-60 hover:opacity-100'
-                }`}
-              >
-                <img
-                  src={testimonial.image}
-                  alt={testimonial.name}
-                  className="w-full h-full object-cover"
-                />
-                <div className={`absolute inset-0 bg-gradient-to-t ${
-                  activeIndex === idx
-                    ? 'from-primary-500/80 to-transparent'
-                    : 'from-secondary-900/60 to-transparent'
-                } transition-all duration-300`}></div>
-                <div className="absolute bottom-2 left-2 right-2">
-                  <p className="text-xs font-bold text-white truncate">{testimonial.name}</p>
-                </div>
-              </motion.button>
             ))}
           </div>
         </div>

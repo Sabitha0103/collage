@@ -265,63 +265,6 @@ const AlumniNetwork: React.FC = () => {
             </div>
           </div>
         </motion.div>
-
-        {/* Global Presence Map */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="bg-gradient-to-br from-secondary-900 via-secondary-800 to-secondary-900 rounded-3xl p-12 md:p-16 text-white"
-        >
-          <div className="flex items-center justify-between mb-12">
-            <div>
-              <h3 className="text-4xl font-black uppercase tracking-tighter mb-4 font-heading">
-                Global Presence
-              </h3>
-              <p className="text-secondary-400">
-                Our alumni are working at top companies around the world
-              </p>
-            </div>
-            <Globe className="text-primary-500 animate-float" size={64} />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {companyLocations.map((company, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.05, y: -5 }}
-                className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 hover:bg-white/15 transition-all duration-300"
-              >
-                <div className="flex items-center justify-between mb-3">
-                  <h4 className="text-xl font-black text-white">{company.company}</h4>
-                  <div className="w-10 h-10 bg-gradient-to-r from-primary-600 to-orange-500 rounded-lg flex items-center justify-center text-sm font-black">
-                    {company.count}
-                  </div>
-                </div>
-                <div className="flex items-center gap-2">
-                  <MapPin size={14} className="text-primary-400" />
-                  <span className="text-xs text-secondary-400">{company.location}</span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-primary-600 to-orange-500 text-white px-8 py-4 rounded-lg font-bold uppercase text-sm tracking-wider hover:shadow-lg hover:shadow-primary-500/50 transition-all"
-            >
-              <TrendingUp size={20} />
-              Join Alumni Network
-            </motion.button>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

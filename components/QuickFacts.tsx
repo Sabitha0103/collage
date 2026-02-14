@@ -94,7 +94,7 @@ const AnimatedCounter: React.FC<CounterProps> = ({ value, suffix }) => {
   }, [springValue]);
 
   return (
-    <div ref={ref} className="text-5xl md:text-6xl font-black text-white">
+    <div ref={ref} className="text-4xl md:text-5xl font-black text-white">
       {displayValue.toLocaleString()}{suffix}
     </div>
   );
@@ -102,7 +102,7 @@ const AnimatedCounter: React.FC<CounterProps> = ({ value, suffix }) => {
 
 const QuickFacts: React.FC = () => {
   return (
-    <section className="py-32 bg-gradient-to-br from-secondary-900 via-secondary-800 to-secondary-900 text-white relative overflow-hidden">
+    <section className="py-16 bg-gradient-to-br from-secondary-900 via-secondary-800 to-secondary-900 text-white relative overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-1/4 w-96 h-96 bg-primary-500 rounded-full blur-3xl animate-float"></div>
@@ -125,7 +125,7 @@ const QuickFacts: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-12"
         >
           <span className="text-primary-500 font-bold uppercase tracking-widest text-xs mb-4 block">
             By The Numbers
@@ -139,7 +139,7 @@ const QuickFacts: React.FC = () => {
         </motion.div>
 
         {/* Facts Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {quickFacts.map((fact, idx) => (
             <motion.div
               key={idx}
@@ -156,7 +156,7 @@ const QuickFacts: React.FC = () => {
               className="relative group"
             >
               {/* Glassmorphism card */}
-              <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-8 hover:bg-white/15 transition-all duration-300 shadow-2xl hover:shadow-primary-500/20">
+              <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 hover:bg-white/15 transition-all duration-300 shadow-2xl hover:shadow-primary-500/20">
                 {/* Gradient background on hover */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${fact.color} opacity-0 group-hover:opacity-10 transition-opacity rounded-2xl`}></div>
 
@@ -166,9 +166,9 @@ const QuickFacts: React.FC = () => {
                   whileInView={{ scale: 1 }}
                   transition={{ delay: idx * 0.1 + 0.3, type: 'spring', stiffness: 200 }}
                   viewport={{ once: true }}
-                  className={`relative w-16 h-16 bg-gradient-to-r ${fact.color} rounded-xl flex items-center justify-center mb-6 shadow-lg group-hover:shadow-primary-500/50 transition-all duration-300`}
+                  className={`relative w-12 h-12 bg-gradient-to-r ${fact.color} rounded-xl flex items-center justify-center mb-4 shadow-lg group-hover:shadow-primary-500/50 transition-all duration-300`}
                 >
-                  <fact.icon className="text-white" size={32} />
+                  <fact.icon className="text-white" size={24} />
                 </motion.div>
 
                 {/* Animated Counter */}
@@ -198,7 +198,7 @@ const QuickFacts: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
           viewport={{ once: true }}
-          className="mt-20 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-8 md:p-12"
+          className="mt-12 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 md:p-8"
         >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div>

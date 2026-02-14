@@ -57,7 +57,52 @@ const Home: React.FC = () => {
 
             <div className="container mx-auto px-8 md:px-20 relative z-10 pointer-events-none">
                <motion.div style={{ y: heroTextY, opacity: heroOpacity }} className="text-left mix-blend-multiply">
-                  <h1 className="text-[20vw] md:text-[25vw] font-black tracking-tighter leading-none text-primary-500 select-none -ml-4 md:-ml-12 animate-float">
+                  {/* Logo positioned behind SRIT text */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30 pointer-events-none">
+                     <motion.img 
+                        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='80' fill='%23f97316' opacity='0.2'/%3E%3Cpath d='M100 40 L140 80 L140 120 L100 160 L60 120 L60 80 Z' fill='%23f97316' opacity='0.3'/%3E%3Ctext x='100' y='115' text-anchor='middle' font-size='60' font-weight='bold' fill='%23f97316'%3ESRIT%3C/text%3E%3C/svg%3E"
+                        alt="SRIT Logo"
+                        className="w-[60vw] md:w-[50vw] h-auto animate-float"
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 0.3 }}
+                        transition={{ duration: 1.5, ease: "easeOut" }}
+                     />
+                  </div>
+                  
+                  {/* SRIT College Logo with animation and glowing effect */}
+                  <motion.div 
+                     className="absolute top-8 right-8 md:top-12 md:right-12 pointer-events-auto"
+                     initial={{ scale: 0, opacity: 0, rotate: -180 }}
+                     animate={{ scale: 1, opacity: 1, rotate: 0 }}
+                     transition={{ duration: 1, delay: 0.3, type: "spring", stiffness: 100 }}
+                  >
+                     <motion.div
+                        animate={{ 
+                           y: [0, -10, 0],
+                           scale: [1, 1.05, 1]
+                        }}
+                        transition={{ 
+                           duration: 3, 
+                           repeat: Infinity, 
+                           ease: "easeInOut" 
+                        }}
+                        className="relative group"
+                     >
+                        {/* Glowing effect border */}
+                        <div className="absolute -inset-2 bg-gradient-to-r from-primary-500 via-orange-400 to-primary-600 rounded-full blur-lg opacity-75 group-hover:opacity-100 animate-pulse"></div>
+                        
+                        {/* Logo container */}
+                        <div className="relative w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-white shadow-2xl hover:border-primary-400 transition-all duration-300">
+                           <img 
+                              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='100' fill='%23f97316'/%3E%3Ccircle cx='100' cy='100' r='85' fill='white'/%3E%3Cpath d='M100 30 L150 70 L150 130 L100 170 L50 130 L50 70 Z' fill='%23f97316'/%3E%3Ctext x='100' y='115' text-anchor='middle' font-size='45' font-weight='bold' fill='white'%3ESRIT%3C/text%3E%3C/svg%3E"
+                              alt="SRIT College Logo"
+                              className="w-full h-full object-cover"
+                           />
+                        </div>
+                     </motion.div>
+                  </motion.div>
+                  
+                  <h1 className="text-[20vw] md:text-[25vw] font-black tracking-tighter leading-none text-primary-500 select-none -ml-4 md:-ml-12 animate-float relative z-10">
                      SRIT
                   </h1>
                   <div className="md:pl-4">
@@ -109,25 +154,56 @@ const Home: React.FC = () => {
                      Read our Vision & Mission
                   </Link>
                </motion.div>
-               <div className="grid grid-cols-2 gap-4">
+               <div className="grid grid-cols-2 gap-6 auto-rows-auto">
                   {[
-                     { icon: Award, title: "NAAC 'A+'", subtitle: "Accredited", delay: 0 },
-                     { icon: Globe, title: "Autonomous", subtitle: "UGC Status", delay: 0.1 },
-                     { icon: Users, title: "3000+", subtitle: "Students", delay: 0.2 },
-                     { icon: BookOpen, title: "NBA", subtitle: "Accredited Depts", delay: 0.3 }
+                     { icon: Award, title: "NAAC 'A+'", subtitle: "Accredited", delay: 0, height: "h-44", gradient: "from-primary-600 to-orange-500" },
+                     { icon: Globe, title: "Autonomous", subtitle: "UGC Status", delay: 0.1, height: "h-52", gradient: "from-orange-500 to-primary-600" },
+                     { icon: Users, title: "3000+", subtitle: "Students", delay: 0.2, height: "h-48", gradient: "from-primary-500 to-orange-400" },
+                     { icon: BookOpen, title: "NBA", subtitle: "Accredited Depts", delay: 0.3, height: "h-40", gradient: "from-orange-600 to-primary-500" }
                   ].map((item, index) => (
                      <motion.div
                         key={index}
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: item.delay }}
+                        initial={{ opacity: 0, y: 30, rotateY: -15 }}
+                        whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
+                        transition={{ duration: 0.6, delay: item.delay, type: "spring", stiffness: 100 }}
                         viewport={{ once: true }}
-                        whileHover={{ scale: 1.05, boxShadow: "0 20px 25px -5px rgba(249, 115, 22, 0.2)" }}
-                        className="bg-white p-8 border-l-4 border-primary-500 shadow-lg hover:shadow-xl transition-all duration-300 rounded-r-lg"
+                        whileHover={{ 
+                           scale: 1.05, 
+                           y: -8,
+                           rotateY: 5,
+                           boxShadow: "0 25px 50px -12px rgba(249, 115, 22, 0.3)"
+                        }}
+                        className={`${item.height} relative overflow-hidden bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 group ${index % 2 === 0 ? 'mt-0' : 'mt-4'}`}
+                        style={{ 
+                           transformStyle: 'preserve-3d',
+                           perspective: '1000px'
+                        }}
                      >
-                        <item.icon className="text-primary-500 mb-4" size={32} />
-                        <h3 className="text-xl font-black mb-2">{item.title}</h3>
-                        <p className="text-xs text-secondary-500 font-bold uppercase">{item.subtitle}</p>
+                        {/* Gradient overlay on hover */}
+                        <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
+                        
+                        {/* Border highlight effect */}
+                        <div className={`absolute inset-0 border-2 border-transparent group-hover:border-primary-500 rounded-2xl transition-all duration-300`}></div>
+                        
+                        {/* Glassmorphism effect */}
+                        <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        
+                        <div className="relative p-6 flex flex-col justify-center h-full">
+                           <motion.div 
+                              className={`w-14 h-14 bg-gradient-to-r ${item.gradient} rounded-xl flex items-center justify-center mb-4 shadow-lg group-hover:shadow-primary-500/50 transition-all`}
+                              whileHover={{ rotate: 360, scale: 1.1 }}
+                              transition={{ duration: 0.6 }}
+                           >
+                              <item.icon className="text-white" size={28} />
+                           </motion.div>
+                           <h3 className="text-2xl font-black mb-2 text-secondary-900 group-hover:text-primary-600 transition-colors">{item.title}</h3>
+                           <p className="text-xs text-secondary-500 font-bold uppercase tracking-wider">{item.subtitle}</p>
+                           
+                           {/* Decorative corner element */}
+                           <div className="absolute bottom-2 right-2 w-8 h-8 opacity-0 group-hover:opacity-20 transition-opacity">
+                              <div className={`w-full h-full bg-gradient-to-br ${item.gradient} rounded-tl-full`}></div>
+                           </div>
+                        </div>
                      </motion.div>
                   ))}
                </div>
@@ -148,27 +224,61 @@ const Home: React.FC = () => {
                   Schools of Study
                </h2>
             </motion.div>
-            <div className="border-y border-gray-100 divide-y md:divide-y-0 md:divide-x divide-gray-100 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
-               {['Computer Science', 'Electronics & Comm.', 'Electrical Engg.', 'Mechanical', 'Civil Engg.', 'Humanities'].map((dept, i) => (
-                  <motion.div 
-                     key={i} 
-                     className="p-10 group hover:bg-gradient-to-br hover:from-secondary-900 hover:to-secondary-800 hover:text-white transition-all duration-300 flex flex-col items-center text-center"
-                     initial={{ opacity: 0, y: 20 }}
-                     whileInView={{ opacity: 1, y: 0 }}
-                     transition={{ duration: 0.5, delay: i * 0.1 }}
-                     viewport={{ once: true }}
-                     whileHover={{ scale: 1.05 }}
-                  >
-                     <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-orange-400 rounded-full flex items-center justify-center mb-6 text-white shadow-lg group-hover:shadow-xl group-hover:shadow-primary-500/50 transition-all">
-                        <ArrowRight size={20} />
-                     </div>
-                     <h3 className="font-bold text-lg uppercase mb-2">{dept}</h3>
-                     <Link to="/departments" className="text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity text-primary-400">
-                        View Program
-                     </Link>
-                  </motion.div>
-               ))}
+            
+            {/* Departments as animated lines */}
+            <div className="container mx-auto px-4 md:px-12 max-w-4xl">
+               <div className="space-y-6">
+                  {['Computer Science & Engineering', 'Electronics & Communication Engineering', 'Electrical & Electronics Engineering', 'Mechanical Engineering', 'Civil Engineering', 'Humanities & Sciences'].map((dept, i) => (
+                     <motion.div 
+                        key={i} 
+                        initial={{ opacity: 0, x: -50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: i * 0.1 }}
+                        viewport={{ once: true }}
+                        whileHover={{ x: 10, scale: 1.02 }}
+                        className="group relative"
+                     >
+                        {/* Line with gradient underline */}
+                        <div className="bg-gradient-to-r from-gray-50 to-white border-l-4 border-primary-500 hover:border-orange-400 rounded-r-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 flex items-center justify-between">
+                           <div className="flex items-center gap-4 flex-1">
+                              {/* Icon circle */}
+                              <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-orange-400 rounded-full flex items-center justify-center text-white shadow-lg group-hover:shadow-primary-500/50 transition-all flex-shrink-0">
+                                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                              </div>
+                              
+                              {/* Department name */}
+                              <h3 className="font-bold text-xl md:text-2xl text-secondary-900 uppercase tracking-tight group-hover:text-primary-600 transition-colors">
+                                 {dept}
+                              </h3>
+                           </div>
+                           
+                           {/* View link */}
+                           <Link 
+                              to="/departments" 
+                              className="text-xs font-bold uppercase tracking-widest text-primary-500 opacity-0 group-hover:opacity-100 transition-opacity hover:text-orange-400 flex items-center gap-2"
+                           >
+                              View Program <ChevronRight size={16} />
+                           </Link>
+                        </div>
+                        
+                        {/* Gradient underline animation */}
+                        <motion.div
+                           initial={{ width: 0 }}
+                           whileInView={{ width: '100%' }}
+                           transition={{ duration: 0.8, delay: i * 0.1 + 0.3 }}
+                           viewport={{ once: true }}
+                           className="h-1 bg-gradient-to-r from-primary-500 via-orange-400 to-transparent mt-2 rounded-full opacity-50 group-hover:opacity-100 transition-opacity"
+                        />
+                        
+                        {/* Subtle separator line */}
+                        {i < 5 && (
+                           <div className="h-px w-full bg-gradient-to-r from-transparent via-gray-200 to-transparent mt-6" />
+                        )}
+                     </motion.div>
+                  ))}
+               </div>
             </div>
+            
             <div className="text-center mt-12">
                <Link to="/departments" className="inline-block bg-gradient-to-r from-primary-600 via-primary-500 to-orange-400 text-white px-8 py-3 rounded font-bold uppercase text-sm tracking-widest hover:shadow-lg hover:shadow-primary-500/50 transition-all duration-300 hover:scale-105">
                   View All Departments
