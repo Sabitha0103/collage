@@ -94,7 +94,7 @@ const AnimatedCounter: React.FC<CounterProps> = ({ value, suffix }) => {
   }, [springValue]);
 
   return (
-    <div ref={ref} className="text-4xl md:text-5xl font-black text-white">
+    <div ref={ref} className="text-3xl md:text-4xl font-black text-secondary-900 font-poppins">
       {displayValue.toLocaleString()}{suffix}
     </div>
   );
@@ -102,9 +102,9 @@ const AnimatedCounter: React.FC<CounterProps> = ({ value, suffix }) => {
 
 const QuickFacts: React.FC = () => {
   return (
-    <section className="py-16 bg-gradient-to-br from-secondary-900 via-secondary-800 to-secondary-900 text-white relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-br from-white via-primary-50/20 to-orange-50/10 text-secondary-900 relative overflow-hidden">
       {/* Animated background elements */}
-      <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0 opacity-5">
         <div className="absolute top-20 left-1/4 w-96 h-96 bg-primary-500 rounded-full blur-3xl animate-float"></div>
         <div className="absolute bottom-20 right-1/4 w-96 h-96 bg-orange-400 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
         <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-primary-600 rounded-full blur-3xl animate-float" style={{ animationDelay: '4s' }}></div>
@@ -125,21 +125,21 @@ const QuickFacts: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
-          <span className="text-primary-500 font-bold uppercase tracking-widest text-xs mb-4 block">
+          <span className="text-primary-500 font-bold uppercase tracking-widest text-xs mb-4 block font-inter">
             By The Numbers
           </span>
-          <h2 className="text-5xl md:text-6xl font-black uppercase tracking-tighter mb-6 font-heading">
-            Quick <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 via-primary-500 to-orange-400">Facts</span>
+          <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight mb-6 font-poppins">
+            Quick <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 via-primary-500 to-orange-400">Facts</span>
           </h2>
-          <p className="text-lg text-secondary-400 max-w-2xl mx-auto">
+          <p className="text-base text-secondary-600 max-w-2xl mx-auto font-inter">
             Numbers that showcase our commitment to excellence and innovation in education.
           </p>
         </motion.div>
 
         {/* Facts Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {quickFacts.map((fact, idx) => (
             <motion.div
               key={idx}
@@ -155,8 +155,8 @@ const QuickFacts: React.FC = () => {
               whileHover={{ scale: 1.05, y: -10 }}
               className="relative group"
             >
-              {/* Glassmorphism card */}
-              <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 hover:bg-white/15 transition-all duration-300 shadow-2xl hover:shadow-primary-500/20">
+              {/* Modern white card */}
+              <div className="bg-white border border-gray-100 rounded-2xl p-6 hover:shadow-2xl transition-all duration-300 shadow-lg">
                 {/* Gradient background on hover */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${fact.color} opacity-0 group-hover:opacity-10 transition-opacity rounded-2xl`}></div>
 
@@ -166,16 +166,18 @@ const QuickFacts: React.FC = () => {
                   whileInView={{ scale: 1 }}
                   transition={{ delay: idx * 0.1 + 0.3, type: 'spring', stiffness: 200 }}
                   viewport={{ once: true }}
-                  className={`relative w-12 h-12 bg-gradient-to-r ${fact.color} rounded-xl flex items-center justify-center mb-4 shadow-lg group-hover:shadow-primary-500/50 transition-all duration-300`}
+                  className={`relative w-14 h-14 bg-gradient-to-r ${fact.color} rounded-xl flex items-center justify-center mb-4 shadow-lg group-hover:shadow-primary-500/50 transition-all duration-300`}
                 >
                   <fact.icon className="text-white" size={24} />
                 </motion.div>
 
                 {/* Animated Counter */}
-                <AnimatedCounter value={fact.value} suffix={fact.suffix} />
+                <div className="text-3xl md:text-4xl font-black text-secondary-900">
+                  <AnimatedCounter value={fact.value} suffix={fact.suffix} />
+                </div>
 
                 {/* Label */}
-                <p className="text-sm font-bold uppercase tracking-wider text-secondary-400 mt-4 group-hover:text-primary-400 transition-colors">
+                <p className="text-sm font-bold uppercase tracking-wider text-secondary-600 mt-3 group-hover:text-primary-600 transition-colors font-inter">
                   {fact.label}
                 </p>
 
