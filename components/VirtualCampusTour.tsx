@@ -16,7 +16,7 @@ const campusSpots: CampusSpot[] = [
     title: "Main Campus Gate",
     description: "Welcome to SRIT - Where innovation meets tradition. Our state-of-the-art campus spans across 50 acres of lush greenery.",
     image: "https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=1200",
-    facilities: []
+    facilities: ["Main Entrance", "Reception", "Campus Map"]
   },
   {
     id: 2,
