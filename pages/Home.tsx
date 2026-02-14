@@ -8,6 +8,9 @@ import EnhancedTestimonials from '../components/EnhancedTestimonials';
 import ResearchInnovation from '../components/ResearchInnovation';
 import AlumniNetwork from '../components/AlumniNetwork';
 import QuickFacts from '../components/QuickFacts';
+import EventsCalendar from '../components/EventsCalendar';
+import NewsAnnouncements from '../components/NewsAnnouncements';
+import FacultyHighlights from '../components/FacultyHighlights';
 
 // -- DATA --
 const notices = [
@@ -368,19 +371,28 @@ const Home: React.FC = () => {
          {/* 6. QUICK FACTS ANIMATED COUNTERS */}
          <QuickFacts />
 
-         {/* 7. VIRTUAL CAMPUS TOUR */}
+         {/* 7. EVENTS CALENDAR */}
+         <EventsCalendar />
+
+         {/* 8. NEWS & ANNOUNCEMENTS */}
+         <NewsAnnouncements />
+
+         {/* 9. VIRTUAL CAMPUS TOUR */}
          <VirtualCampusTour />
 
-         {/* 8. RESEARCH & INNOVATION HUB */}
+         {/* 10. FACULTY HIGHLIGHTS */}
+         <FacultyHighlights />
+
+         {/* 11. RESEARCH & INNOVATION HUB */}
          <ResearchInnovation />
 
-         {/* 9. ALUMNI NETWORK */}
+         {/* 12. ALUMNI NETWORK */}
          <AlumniNetwork />
 
-         {/* 10. ENHANCED TESTIMONIALS */}
+         {/* 13. ENHANCED TESTIMONIALS */}
          <EnhancedTestimonials />
 
-         {/* 11. CONTACT & MAP */}
+         {/* 14. CONTACT & MAP */}
          <section className="grid grid-cols-1 lg:grid-cols-2">
             <div className="bg-gradient-to-br from-secondary-900 via-secondary-800 to-secondary-900 text-white p-16 md:p-32 flex flex-col justify-center">
                <motion.div
