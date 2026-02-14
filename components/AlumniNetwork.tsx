@@ -119,13 +119,13 @@ const AlumniNetwork: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="text-primary-500 font-bold uppercase tracking-widest text-xs mb-4 block">
+          <span className="text-primary-500 font-bold uppercase tracking-widest text-xs mb-4 block font-inter">
             Our Pride
           </span>
-          <h2 className="text-5xl md:text-6xl font-black uppercase tracking-tighter mb-6 font-heading">
+          <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight mb-6 font-poppins">
             Alumni <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 via-primary-500 to-orange-400">Network</span>
           </h2>
-          <p className="text-lg text-secondary-600 max-w-2xl mx-auto">
+          <p className="text-base text-secondary-600 max-w-2xl mx-auto font-inter">
             Our alumni are making waves across the globe, leading innovation in top tech companies and startups.
           </p>
         </motion.div>
@@ -140,13 +140,13 @@ const AlumniNetwork: React.FC = () => {
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ scale: 1.05, y: -5 }}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border-t-4 border-primary-500 group"
+              className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border-t-4 border-primary-500 group"
             >
-              <div className={`w-14 h-14 bg-gradient-to-r ${stat.color} rounded-xl flex items-center justify-center mb-4 shadow-lg group-hover:shadow-primary-500/50 transition-shadow`}>
-                <stat.icon className="text-white" size={28} />
+              <div className={`w-12 h-12 bg-gradient-to-r ${stat.color} rounded-xl flex items-center justify-center mb-4 shadow-lg group-hover:shadow-primary-500/50 transition-shadow`}>
+                <stat.icon className="text-white" size={24} />
               </div>
-              <div className="text-3xl md:text-4xl font-black text-secondary-900 mb-2">{stat.value}</div>
-              <div className="text-sm font-bold uppercase tracking-wide text-secondary-500">{stat.label}</div>
+              <div className="text-3xl md:text-4xl font-black text-secondary-900 mb-2 font-poppins">{stat.value}</div>
+              <div className="text-xs font-bold uppercase tracking-wide text-secondary-600 font-inter">{stat.label}</div>
             </motion.div>
           ))}
         </div>

@@ -140,13 +140,13 @@ const ResearchInnovation: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="text-primary-500 font-bold uppercase tracking-widest text-xs mb-4 block">
+          <span className="text-primary-500 font-bold uppercase tracking-widest text-xs mb-4 block font-inter">
             Innovation & Research
           </span>
-          <h2 className="text-5xl md:text-6xl font-black uppercase tracking-tighter mb-6 font-heading">
+          <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight mb-6 font-poppins">
             Research & <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 via-primary-500 to-orange-400">Innovation Hub</span>
           </h2>
-          <p className="text-lg text-secondary-600 max-w-3xl mx-auto">
+          <p className="text-base text-secondary-600 max-w-3xl mx-auto font-inter">
             Pioneering groundbreaking research and fostering innovation across multiple domains to solve real-world challenges.
           </p>
         </motion.div>
@@ -161,18 +161,18 @@ const ResearchInnovation: React.FC = () => {
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ scale: 1.05, y: -5 }}
-              className="relative bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border-l-4 border-primary-500 shadow-lg hover:shadow-2xl transition-all duration-300 group"
+              className="relative bg-gradient-to-br from-gray-50 to-white p-6 rounded-2xl border-l-4 border-primary-500 shadow-lg hover:shadow-2xl transition-all duration-300 group"
             >
               {/* Glassmorphism effect on hover */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-orange-400/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl"></div>
               
               <div className="relative">
-                <div className="w-14 h-14 bg-gradient-to-r from-primary-600 to-orange-500 rounded-xl flex items-center justify-center mb-4 shadow-lg group-hover:shadow-primary-500/50 transition-shadow">
-                  <item.icon className="text-white" size={28} />
+                <div className="w-12 h-12 bg-gradient-to-r from-primary-600 to-orange-500 rounded-xl flex items-center justify-center mb-4 shadow-lg group-hover:shadow-primary-500/50 transition-shadow">
+                  <item.icon className="text-white" size={24} />
                 </div>
-                <div className="text-4xl font-black text-secondary-900 mb-2">{item.value}</div>
-                <h4 className="text-sm font-bold uppercase tracking-wide text-secondary-900 mb-1">{item.title}</h4>
-                <p className="text-xs text-secondary-500">{item.description}</p>
+                <div className="text-3xl font-black text-secondary-900 mb-2 font-poppins">{item.value}</div>
+                <h4 className="text-xs font-bold uppercase tracking-wide text-secondary-900 mb-1 font-inter">{item.title}</h4>
+                <p className="text-xs text-secondary-600 font-inter">{item.description}</p>
               </div>
             </motion.div>
           ))}
